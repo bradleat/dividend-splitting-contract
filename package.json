@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "client-build": "(mkdir build/client || true) && browserify client/main.js -o build/client/main.js -t [ babelify --presets [ es2015 react ] ]&& cp client/index.html build/client/index.html",
+    "client-watch": "watchify client/main.js -o build/client/main.js -t [ babelify --presets [ es2015 react ] ]",
+    "client-run": "http-server ./build/client",
+    "client-clean": "rm -rf build/client"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "ethereumjs-testrpc": "^3.0.5",
+    "http-server": "^0.10.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "solc": "^0.4.11",
+    "truffle": "^3.2.5",
+    "truffle-contract": "^2.0.1",
+    "watchify": "^3.9.0"
+  }
+}
