@@ -177,8 +177,6 @@ contract ShareholderAgreement {
 		uint amountOwed = amountOfDividendOwed(msg.sender);
 		if(amountOwed == 0) return false;
 		
-		msg.sender.transfer(amountOwed);
-
 		for (uint index = 0; index < shareholderCheckpoints[msg.sender].length; index++) {
 			if(
 				shareholderCheckpoints[msg.sender][index].paid == false && shareholderCheckpoints[msg.sender][index].atTreasuryCheckpointIndex < treasuryCheckpoints.length - 1
@@ -197,6 +195,7 @@ contract ShareholderAgreement {
 		shareholderCheckpoints[msg.sender].push(newCheckpoint);
 
 		// TODO make a new checkpoint
+		msg.sender.transfer(amountOwed);		
 		DividendPaid(msg.sender, amountOwed);
 		return true;
 	}
